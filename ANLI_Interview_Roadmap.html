@@ -1,0 +1,1031 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ANLI Round 2 — Interview Roadmap &amp; Guide</title>
+<style>
+  :root {
+    --bg: #0f1117;
+    --surface: #1a1d27;
+    --surface2: #232734;
+    --border: #2e3345;
+    --text: #e2e4ed;
+    --text-dim: #8b8fa3;
+    --accent: #6c63ff;
+    --accent-light: #8b84ff;
+    --green: #34d399;
+    --green-dim: #065f46;
+    --orange: #f59e0b;
+    --orange-dim: #78350f;
+    --red: #f87171;
+    --red-dim: #7f1d1d;
+    --blue: #60a5fa;
+    --blue-dim: #1e3a5f;
+    --pink: #f472b6;
+    --cyan: #22d3ee;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, sans-serif;
+    background: var(--bg);
+    color: var(--text);
+    line-height: 1.7;
+    padding: 0;
+  }
+
+  .hero {
+    background: linear-gradient(135deg, #1a1040 0%, #0f1117 50%, #0a1628 100%);
+    border-bottom: 1px solid var(--border);
+    padding: 60px 40px 50px;
+    text-align: center;
+  }
+  .hero h1 {
+    font-size: 2.6rem;
+    font-weight: 700;
+    background: linear-gradient(135deg, var(--accent-light), var(--cyan));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 12px;
+  }
+  .hero .subtitle {
+    color: var(--text-dim);
+    font-size: 1.15rem;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+  .hero .badge-row {
+    margin-top: 24px;
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .badge {
+    display: inline-block;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.82rem;
+    font-weight: 600;
+    letter-spacing: 0.3px;
+  }
+  .badge.purple { background: rgba(108,99,255,0.15); color: var(--accent-light); border: 1px solid rgba(108,99,255,0.3); }
+  .badge.green  { background: rgba(52,211,153,0.12); color: var(--green); border: 1px solid rgba(52,211,153,0.25); }
+  .badge.orange { background: rgba(245,158,11,0.12); color: var(--orange); border: 1px solid rgba(245,158,11,0.25); }
+
+  .container { max-width: 960px; margin: 0 auto; padding: 40px 24px 80px; }
+
+  /* ---- SECTIONS ---- */
+  section { margin-bottom: 56px; }
+  h2 {
+    font-size: 1.7rem;
+    font-weight: 700;
+    margin-bottom: 24px;
+    padding-bottom: 10px;
+    border-bottom: 2px solid var(--border);
+    color: var(--text);
+  }
+  h3 {
+    font-size: 1.2rem;
+    font-weight: 600;
+    margin: 28px 0 12px;
+    color: var(--accent-light);
+  }
+  h4 {
+    font-size: 1.05rem;
+    font-weight: 600;
+    margin: 20px 0 8px;
+    color: var(--cyan);
+  }
+  p { margin-bottom: 14px; color: var(--text); }
+
+  ul, ol { margin: 10px 0 18px 24px; }
+  li { margin-bottom: 6px; }
+  li code, p code {
+    background: var(--surface2);
+    padding: 2px 7px;
+    border-radius: 4px;
+    font-size: 0.9em;
+    color: var(--cyan);
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  }
+
+  /* ---- TIMELINE ---- */
+  .timeline {
+    position: relative;
+    padding-left: 36px;
+    margin: 20px 0;
+  }
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 14px;
+    top: 0;
+    bottom: 0;
+    width: 3px;
+    background: linear-gradient(to bottom, var(--accent), var(--green), var(--orange));
+    border-radius: 2px;
+  }
+  .timeline-item {
+    position: relative;
+    margin-bottom: 20px;
+    padding: 16px 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+  }
+  .timeline-item::before {
+    content: '';
+    position: absolute;
+    left: -29px;
+    top: 20px;
+    width: 13px;
+    height: 13px;
+    border-radius: 50%;
+    background: var(--accent);
+    border: 3px solid var(--bg);
+  }
+  .timeline-item .day {
+    font-weight: 700;
+    color: var(--accent-light);
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+  .timeline-item .desc { color: var(--text); margin-top: 4px; }
+
+  /* ---- FLOWCHART ---- */
+  .flowchart {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    margin: 30px 0;
+    padding: 30px 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    overflow-x: auto;
+  }
+  .flow-row {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+  .flow-node {
+    padding: 14px 22px;
+    border-radius: 10px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    text-align: center;
+    min-width: 140px;
+    max-width: 200px;
+    line-height: 1.4;
+    position: relative;
+  }
+  .flow-node.start {
+    background: linear-gradient(135deg, rgba(108,99,255,0.25), rgba(108,99,255,0.10));
+    border: 2px solid var(--accent);
+    color: var(--accent-light);
+    border-radius: 50px;
+  }
+  .flow-node.process {
+    background: rgba(96,165,250,0.10);
+    border: 1.5px solid rgba(96,165,250,0.4);
+    color: var(--blue);
+  }
+  .flow-node.decision {
+    background: rgba(245,158,11,0.10);
+    border: 1.5px solid rgba(245,158,11,0.4);
+    color: var(--orange);
+    transform: rotate(0deg);
+    border-radius: 10px;
+    clip-path: polygon(50% 0%, 100% 50%, 50% 100%, 0% 50%);
+    padding: 30px 30px;
+    min-width: 160px;
+  }
+  .flow-node.success {
+    background: rgba(52,211,153,0.10);
+    border: 2px solid var(--green);
+    color: var(--green);
+    border-radius: 50px;
+  }
+  .flow-node.warn {
+    background: rgba(244,114,182,0.10);
+    border: 1.5px solid rgba(244,114,182,0.35);
+    color: var(--pink);
+  }
+  .flow-arrow {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-dim);
+    font-size: 1.3rem;
+    padding: 0 6px;
+    min-width: 30px;
+  }
+  .flow-arrow.down {
+    padding: 6px 0;
+    font-size: 1.4rem;
+  }
+  .flow-label {
+    font-size: 0.72rem;
+    color: var(--text-dim);
+    margin-top: -2px;
+    margin-bottom: 2px;
+    text-align: center;
+    font-weight: 500;
+  }
+
+  /* ---- VERTICAL FLOW ---- */
+  .vflow {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    margin: 30px auto;
+    padding: 30px 20px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    max-width: 700px;
+  }
+  .vflow .step-box {
+    padding: 16px 28px;
+    border-radius: 10px;
+    text-align: center;
+    font-weight: 600;
+    font-size: 0.9rem;
+    min-width: 260px;
+    max-width: 400px;
+    line-height: 1.5;
+  }
+  .vflow .step-box.blue   { background: rgba(96,165,250,0.10);  border: 1.5px solid rgba(96,165,250,0.4);  color: var(--blue); }
+  .vflow .step-box.purple { background: rgba(108,99,255,0.15);  border: 1.5px solid rgba(108,99,255,0.4);  color: var(--accent-light); }
+  .vflow .step-box.green  { background: rgba(52,211,153,0.10);  border: 1.5px solid rgba(52,211,153,0.35); color: var(--green); }
+  .vflow .step-box.orange { background: rgba(245,158,11,0.10);  border: 1.5px solid rgba(245,158,11,0.35); color: var(--orange); }
+  .vflow .step-box.pink   { background: rgba(244,114,182,0.10); border: 1.5px solid rgba(244,114,182,0.35);color: var(--pink); }
+  .vflow .step-box.cyan   { background: rgba(34,211,238,0.10);  border: 1.5px solid rgba(34,211,238,0.30); color: var(--cyan); }
+  .vflow .step-box.start  { border-radius: 50px; background: linear-gradient(135deg,rgba(108,99,255,0.25),rgba(108,99,255,0.10)); border: 2px solid var(--accent); color: var(--accent-light); }
+  .vflow .step-box.end    { border-radius: 50px; background: rgba(52,211,153,0.15); border: 2px solid var(--green); color: var(--green); }
+  .vflow .arrow-down {
+    color: var(--text-dim);
+    font-size: 1.5rem;
+    line-height: 1;
+    padding: 4px 0;
+  }
+  .vflow .split {
+    display: flex;
+    gap: 16px;
+    align-items: flex-start;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* ---- CARD GRID ---- */
+  .card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 16px;
+    margin: 20px 0;
+  }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 22px;
+    transition: border-color 0.2s;
+  }
+  .card:hover { border-color: var(--accent); }
+  .card .card-title {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 10px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+  .card .card-title .icon {
+    width: 28px;
+    height: 28px;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    flex-shrink: 0;
+  }
+  .card .card-title .icon.purple { background: rgba(108,99,255,0.2); color: var(--accent-light); }
+  .card .card-title .icon.green  { background: rgba(52,211,153,0.2); color: var(--green); }
+  .card .card-title .icon.orange { background: rgba(245,158,11,0.2); color: var(--orange); }
+  .card .card-title .icon.blue   { background: rgba(96,165,250,0.2); color: var(--blue); }
+  .card .card-title .icon.pink   { background: rgba(244,114,182,0.2); color: var(--pink); }
+  .card .card-title .icon.cyan   { background: rgba(34,211,238,0.2); color: var(--cyan); }
+  .card ul { margin-left: 16px; }
+  .card li { font-size: 0.9rem; color: var(--text-dim); }
+
+  /* ---- TABLE ---- */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 16px 0;
+    background: var(--surface);
+    border-radius: 10px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  thead th {
+    background: var(--surface2);
+    padding: 12px 16px;
+    text-align: left;
+    font-weight: 700;
+    font-size: 0.88rem;
+    color: var(--accent-light);
+    border-bottom: 2px solid var(--border);
+  }
+  tbody td {
+    padding: 10px 16px;
+    font-size: 0.9rem;
+    border-bottom: 1px solid var(--border);
+    color: var(--text);
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:hover { background: rgba(108,99,255,0.04); }
+
+  /* ---- CODE BLOCK ---- */
+  pre {
+    background: #0d0f14;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    overflow-x: auto;
+    margin: 16px 0;
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    font-size: 0.85rem;
+    line-height: 1.7;
+    color: var(--text-dim);
+  }
+  pre .kw  { color: var(--accent-light); }
+  pre .str { color: var(--green); }
+  pre .cmt { color: #555b70; font-style: italic; }
+  pre .fn  { color: var(--cyan); }
+
+  /* ---- CALLOUT ---- */
+  .callout {
+    padding: 18px 22px;
+    border-radius: 10px;
+    margin: 18px 0;
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+  .callout.info {
+    background: rgba(96,165,250,0.08);
+    border-left: 4px solid var(--blue);
+    color: var(--blue);
+  }
+  .callout.warn {
+    background: rgba(245,158,11,0.08);
+    border-left: 4px solid var(--orange);
+    color: var(--orange);
+  }
+  .callout.tip {
+    background: rgba(52,211,153,0.08);
+    border-left: 4px solid var(--green);
+    color: var(--green);
+  }
+  .callout strong { color: inherit; }
+
+  /* ---- FOLDER TREE ---- */
+  .tree {
+    background: #0d0f14;
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 22px 26px;
+    font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+    font-size: 0.85rem;
+    line-height: 1.8;
+    color: var(--text-dim);
+    margin: 16px 0;
+    overflow-x: auto;
+  }
+  .tree .folder { color: var(--blue); font-weight: 600; }
+  .tree .file   { color: var(--text-dim); }
+  .tree .comment{ color: #555b70; }
+
+  /* ---- CHECKLIST ---- */
+  .checklist {
+    margin: 20px 0;
+    list-style: none;
+    padding: 0;
+  }
+  .checklist li {
+    padding: 12px 18px;
+    margin-bottom: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-size: 0.92rem;
+  }
+  .checklist .check {
+    width: 22px;
+    height: 22px;
+    border: 2px solid var(--border);
+    border-radius: 6px;
+    flex-shrink: 0;
+  }
+  .checklist .day-label {
+    font-weight: 700;
+    color: var(--accent-light);
+    min-width: 50px;
+  }
+
+  /* ---- PRESENTATION SLIDES TABLE ---- */
+  .slides-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 14px;
+    margin: 20px 0;
+  }
+  .slide-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 20px;
+    position: relative;
+  }
+  .slide-card .slide-num {
+    position: absolute;
+    top: 12px;
+    right: 14px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: var(--text-dim);
+    background: var(--surface2);
+    padding: 2px 8px;
+    border-radius: 4px;
+  }
+  .slide-card .slide-title {
+    font-weight: 700;
+    font-size: 0.95rem;
+    margin-bottom: 6px;
+    color: var(--accent-light);
+  }
+  .slide-card .slide-desc {
+    font-size: 0.85rem;
+    color: var(--text-dim);
+    line-height: 1.5;
+  }
+
+  .separator { border: none; border-top: 1px solid var(--border); margin: 50px 0; }
+
+  @media (max-width: 600px) {
+    .hero { padding: 40px 20px 30px; }
+    .hero h1 { font-size: 1.8rem; }
+    .container { padding: 24px 16px 60px; }
+    h2 { font-size: 1.4rem; }
+    .flow-node { min-width: 100px; padding: 10px 14px; font-size: 0.8rem; }
+    .vflow .step-box { min-width: 180px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ========== HERO ========== -->
+<div class="hero">
+  <h1>ANLI Round 2 Classification</h1>
+  <p class="subtitle">Complete Interview Roadmap &amp; Step-by-Step Project Guide</p>
+  <div class="badge-row">
+    <span class="badge purple">NLI 3-Way Classification</span>
+    <span class="badge green">HuggingFace Datasets</span>
+    <span class="badge orange">7-Day Plan</span>
+  </div>
+</div>
+
+<div class="container">
+
+<!-- ========== 7-DAY TIMELINE ========== -->
+<section>
+  <h2>7-Day Roadmap</h2>
+  <div class="timeline">
+    <div class="timeline-item">
+      <div class="day">Day 1 – 2</div>
+      <div class="desc">Take-home project &mdash; EDA, data preprocessing, baseline model (TF-IDF + Logistic Regression / XGBoost)</div>
+    </div>
+    <div class="timeline-item">
+      <div class="day">Day 3 – 4</div>
+      <div class="desc">Advanced modeling &mdash; Fine-tune DeBERTa/RoBERTa, hyperparameter tuning, full evaluation &amp; error analysis</div>
+    </div>
+    <div class="timeline-item">
+      <div class="day">Day 5</div>
+      <div class="desc">Docker deployment, docker-compose setup, README documentation, clean up codebase</div>
+    </div>
+    <div class="timeline-item">
+      <div class="day">Day 6</div>
+      <div class="desc">Build presentation slides, practice delivery. Begin LeetCode Medium &amp; Pandas prep</div>
+    </div>
+    <div class="timeline-item">
+      <div class="day">Day 7</div>
+      <div class="desc">ML from-scratch coding practice, final dry run of presentation, submit GitHub repo</div>
+    </div>
+  </div>
+</section>
+
+<hr class="separator">
+
+<!-- ========== PART 1: LIVE CODING ========== -->
+<section>
+  <h2>Part 1: Live Coding Session Prep</h2>
+
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-title"><span class="icon purple">A</span> LeetCode Medium</div>
+      <ul>
+        <li><strong>Arrays/Strings</strong> &mdash; Two pointers, sliding window, prefix sums</li>
+        <li><strong>Hash Maps</strong> &mdash; Group anagrams, two-sum variants, frequency counting</li>
+        <li><strong>Trees/Graphs</strong> &mdash; BFS/DFS, binary tree traversals</li>
+        <li><strong>Dynamic Programming</strong> &mdash; Coin change, longest subsequence</li>
+        <li>Practice 2-3 problems/day from &ldquo;Top Interview 150&rdquo;</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon green">B</span> Pandas Mastery</div>
+      <ul>
+        <li><code>groupby</code>, <code>agg</code>, <code>transform</code>, <code>apply</code></li>
+        <li><code>merge</code>, <code>join</code>, <code>concat</code> (inner, outer, left, right)</li>
+        <li><code>pivot_table</code>, <code>melt</code>, <code>stack/unstack</code></li>
+        <li>Window: <code>rolling</code>, <code>expanding</code>, <code>shift</code></li>
+        <li>Missing data: <code>fillna</code>, <code>dropna</code>, <code>interpolate</code></li>
+        <li>Vectorized ops vs <code>apply</code> performance</li>
+      </ul>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon orange">C</span> ML From Scratch</div>
+      <ul>
+        <li><strong>Linear Regression</strong> &mdash; gradient descent</li>
+        <li><strong>Logistic Regression</strong> &mdash; sigmoid, cross-entropy loss</li>
+        <li><strong>KNN</strong> &mdash; distance metrics, prediction</li>
+        <li><strong>Decision Tree</strong> &mdash; info gain / gini impurity</li>
+        <li>Train/test split, cross-validation logic</li>
+        <li>Confusion matrix, precision/recall/F1</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<hr class="separator">
+
+<!-- ========== PART 2: TAKE-HOME ========== -->
+<section>
+  <h2>Part 2: Take-Home Project</h2>
+
+  <h3>Task Summary</h3>
+  <table>
+    <thead><tr><th>Item</th><th>Detail</th></tr></thead>
+    <tbody>
+      <tr><td>Dataset</td><td>ANLI (Adversarial Natural Language Inference) &mdash; Round 2</td></tr>
+      <tr><td>Source</td><td><a href="https://huggingface.co/datasets/facebook/anli" style="color:var(--cyan)">huggingface.co/datasets/facebook/anli</a></td></tr>
+      <tr><td>Training Set</td><td><code>train_r2</code> &mdash; 45,460 examples</td></tr>
+      <tr><td>Validation Set</td><td><code>dev_r2</code> &mdash; 1,000 examples</td></tr>
+      <tr><td>Test Set</td><td><code>test_r2</code> &mdash; 1,000 examples</td></tr>
+      <tr><td>Task</td><td>3-way classification (entailment, neutral, contradiction)</td></tr>
+    </tbody>
+  </table>
+
+  <h3>Deliverables</h3>
+  <ol>
+    <li>Complete end-to-end ML pipeline (EDA through model evaluation)</li>
+    <li>Well-documented Jupyter notebook with clear formatting</li>
+    <li>Code repository on GitHub with supporting documentation</li>
+    <li>Docker deployment with documentation</li>
+    <li>Presentation summarizing methodology and results</li>
+  </ol>
+</section>
+
+<hr class="separator">
+
+<!-- ========== OVERALL PIPELINE FLOWCHART ========== -->
+<section>
+  <h2>End-to-End ML Pipeline Flowchart</h2>
+  <div class="vflow">
+    <div class="step-box start">Start: Project Setup</div>
+    <div class="arrow-down">&#9661;</div>
+    <div class="step-box blue">Step 1: Repository Structure &amp; Environment</div>
+    <div class="arrow-down">&#9661;</div>
+    <div class="step-box purple">Step 2: Exploratory Data Analysis (EDA)</div>
+    <div class="arrow-down">&#9661;</div>
+    <div class="step-box cyan">Step 3: Data Preprocessing &amp; Tokenization</div>
+    <div class="arrow-down">&#9661;</div>
+    <div class="step-box orange">Step 4: Modeling (Baseline &#8594; Transformer)</div>
+    <div class="arrow-down">&#9661;</div>
+    <div class="step-box pink">Step 5: Training &amp; Hyperparameter Tuning</div>
+    <div class="arrow-down">&#9661;</div>
+    <div class="step-box blue">Step 6: Evaluation &amp; Error Analysis</div>
+    <div class="arrow-down">&#9661;</div>
+    <div class="step-box green">Step 7: Docker Deployment</div>
+    <div class="arrow-down">&#9661;</div>
+    <div class="step-box purple">Step 8: Documentation (README)</div>
+    <div class="arrow-down">&#9661;</div>
+    <div class="step-box end">Step 9: Presentation &amp; Submission</div>
+  </div>
+</section>
+
+<hr class="separator">
+
+<!-- ========== STEP 1 ========== -->
+<section>
+  <h2>Step 1: Project Setup &amp; Repository Structure</h2>
+  <div class="tree">
+<span class="folder">anli-classification/</span>
+├── <span class="file">README.md</span>
+├── <span class="file">Dockerfile</span>
+├── <span class="file">docker-compose.yml</span>
+├── <span class="file">requirements.txt</span>
+├── <span class="file">.gitignore</span>
+├── <span class="folder">notebooks/</span>
+│   └── <span class="file">anli_r2_classification.ipynb</span>
+├── <span class="folder">src/</span>
+│   ├── <span class="file">__init__.py</span>
+│   ├── <span class="file">data.py</span>          <span class="comment"># data loading &amp; preprocessing</span>
+│   ├── <span class="file">model.py</span>         <span class="comment"># model definitions</span>
+│   ├── <span class="file">train.py</span>         <span class="comment"># training pipeline</span>
+│   ├── <span class="file">evaluate.py</span>      <span class="comment"># evaluation utilities</span>
+│   └── <span class="file">predict.py</span>       <span class="comment"># inference script</span>
+├── <span class="folder">configs/</span>
+│   └── <span class="file">config.yaml</span>      <span class="comment"># hyperparameters</span>
+├── <span class="folder">presentation/</span>
+│   └── <span class="file">slides.pdf</span>
+└── <span class="folder">results/</span>
+    └── <span class="file">metrics.json</span>
+  </div>
+</section>
+
+<hr class="separator">
+
+<!-- ========== STEP 2: EDA ========== -->
+<section>
+  <h2>Step 2: Exploratory Data Analysis (EDA)</h2>
+
+  <h3>EDA Workflow Flowchart</h3>
+  <div class="vflow">
+    <div class="step-box start">Load ANLI R2 Dataset</div>
+    <div class="arrow-down">&#9661;</div>
+    <div class="step-box blue">Dataset Overview: shape, columns, schema, sample rows</div>
+    <div class="arrow-down">&#9661;</div>
+    <div class="step-box purple">Label Distribution: bar chart across train / dev / test</div>
+    <div class="arrow-down">&#9661;</div>
+    <div class="step-box cyan">Text Length Analysis: premise &amp; hypothesis word/char counts</div>
+    <div class="arrow-down">&#9661;</div>
+    <div class="step-box orange">Overlap Analysis: word overlap between premise &amp; hypothesis per label</div>
+    <div class="arrow-down">&#9661;</div>
+    <div class="step-box pink">Vocabulary Statistics: unique tokens, top words per class</div>
+    <div class="arrow-down">&#9661;</div>
+    <div class="step-box end">Data Quality Check: missing values, duplicates, special chars</div>
+  </div>
+</section>
+
+<hr class="separator">
+
+<!-- ========== STEP 3: PREPROCESSING ========== -->
+<section>
+  <h2>Step 3: Data Preprocessing</h2>
+
+  <h3>Preprocessing Pipeline Flowchart</h3>
+  <div class="vflow">
+    <div class="step-box start">Raw ANLI R2 Data</div>
+    <div class="arrow-down">&#9661;</div>
+    <div class="step-box blue">Load via HuggingFace <code>datasets</code> library</div>
+    <div class="arrow-down">&#9661;</div>
+    <div class="step-box purple">Text Cleaning: lowercase, handle special characters</div>
+    <div class="arrow-down">&#9661;</div>
+    <div class="step-box cyan">Tokenization: pretrained tokenizer (DeBERTa / RoBERTa)</div>
+    <div class="arrow-down">&#9661;</div>
+    <div class="step-box orange">Input Formatting: premise [SEP] hypothesis</div>
+    <div class="arrow-down">&#9661;</div>
+    <div class="step-box pink">Label Encoding: entailment=0, neutral=1, contradiction=2</div>
+    <div class="arrow-down">&#9661;</div>
+    <div class="step-box end">Create DataLoaders (batch size + padding)</div>
+  </div>
+</section>
+
+<hr class="separator">
+
+<!-- ========== STEP 4: MODELING ========== -->
+<section>
+  <h2>Step 4: Modeling Strategy</h2>
+
+  <h3>Model Selection Flowchart</h3>
+  <div class="vflow">
+    <div class="step-box start">Choose Modeling Approach</div>
+    <div class="arrow-down">&#9661;</div>
+    <div class="split">
+      <div style="display:flex;flex-direction:column;align-items:center;gap:0">
+        <div class="step-box blue" style="min-width:220px">Baseline Models<br><small style="color:var(--text-dim)">(Show Breadth)</small></div>
+        <div class="arrow-down">&#9661;</div>
+        <div class="step-box cyan" style="min-width:220px">TF-IDF + Logistic Regression</div>
+        <div class="arrow-down">&#9661;</div>
+        <div class="step-box cyan" style="min-width:220px">TF-IDF + XGBoost</div>
+      </div>
+      <div style="display:flex;flex-direction:column;align-items:center;gap:0">
+        <div class="step-box orange" style="min-width:220px">Primary Model<br><small style="color:var(--text-dim)">(Show Depth)</small></div>
+        <div class="arrow-down">&#9661;</div>
+        <div class="step-box pink" style="min-width:220px">DeBERTa-v3-base<br><small style="color:var(--text-dim)">(Best for NLI)</small></div>
+        <div class="arrow-down">&#9661;</div>
+        <div class="step-box pink" style="min-width:220px">Alternatives: RoBERTa, DistilBERT</div>
+      </div>
+    </div>
+    <div class="arrow-down">&#9661;</div>
+    <div class="step-box end">Compare All Models</div>
+  </div>
+
+  <div class="callout info">
+    <strong>Why DeBERTa?</strong> It uses disentangled attention to separately encode content and position, making it particularly strong on NLI tasks. It consistently tops NLI leaderboards and handles adversarial examples better than BERT/RoBERTa.
+  </div>
+</section>
+
+<hr class="separator">
+
+<!-- ========== STEP 5: TRAINING ========== -->
+<section>
+  <h2>Step 5: Training Pipeline</h2>
+
+  <h3>Training Loop Flowchart</h3>
+  <div class="vflow">
+    <div class="step-box start">Load Pretrained Model + Tokenizer</div>
+    <div class="arrow-down">&#9661;</div>
+    <div class="step-box blue">Add Classification Head (3 classes)</div>
+    <div class="arrow-down">&#9661;</div>
+    <div class="step-box purple">Setup: AdamW optimizer + Linear Warmup Scheduler</div>
+    <div class="arrow-down">&#9661;</div>
+    <div class="step-box orange">Training Loop (3-5 epochs)</div>
+    <div class="arrow-down">&#9661;</div>
+    <div class="step-box cyan">Validate on dev_r2 after each epoch</div>
+    <div class="arrow-down">&#9661;</div>
+    <div class="step-box pink">Best validation accuracy?</div>
+    <div class="arrow-down">&#9661;</div>
+    <div class="step-box end">Save Best Model Checkpoint</div>
+  </div>
+
+  <h3>Key Hyperparameters</h3>
+  <table>
+    <thead><tr><th>Parameter</th><th>Recommended Range</th></tr></thead>
+    <tbody>
+      <tr><td>Learning Rate</td><td>1e-5 to 3e-5</td></tr>
+      <tr><td>Weight Decay</td><td>0.01</td></tr>
+      <tr><td>Warmup Steps</td><td>6&ndash;10% of total steps</td></tr>
+      <tr><td>Max Sequence Length</td><td>128&ndash;256</td></tr>
+      <tr><td>Batch Size</td><td>16 or 32</td></tr>
+      <tr><td>Epochs</td><td>3&ndash;5</td></tr>
+    </tbody>
+  </table>
+</section>
+
+<hr class="separator">
+
+<!-- ========== STEP 6: EVALUATION ========== -->
+<section>
+  <h2>Step 6: Evaluation &amp; Error Analysis</h2>
+
+  <h3>Evaluation Workflow Flowchart</h3>
+  <div class="vflow">
+    <div class="step-box start">Load Best Model Checkpoint</div>
+    <div class="arrow-down">&#9661;</div>
+    <div class="step-box blue">Run Inference on test_r2</div>
+    <div class="arrow-down">&#9661;</div>
+    <div class="step-box purple">Overall Metrics: Accuracy, Macro F1, Weighted F1</div>
+    <div class="arrow-down">&#9661;</div>
+    <div class="step-box cyan">Per-Class: Precision, Recall, F1 for each label</div>
+    <div class="arrow-down">&#9661;</div>
+    <div class="step-box orange">Confusion Matrix Heatmap</div>
+    <div class="arrow-down">&#9661;</div>
+    <div class="step-box pink">Error Analysis: examine misclassified examples</div>
+    <div class="arrow-down">&#9661;</div>
+    <div class="step-box end">Comparison Table: Baseline vs. Transformer</div>
+  </div>
+
+  <h3>Expected Performance Benchmarks (ANLI R2)</h3>
+  <table>
+    <thead><tr><th>Model</th><th>Approximate Accuracy</th></tr></thead>
+    <tbody>
+      <tr><td>Random Baseline</td><td>~33%</td></tr>
+      <tr><td>TF-IDF + Logistic Regression</td><td>~33&ndash;36%</td></tr>
+      <tr><td>BERT-base fine-tuned</td><td>~38&ndash;42%</td></tr>
+      <tr><td>RoBERTa-large fine-tuned</td><td>~45&ndash;50%</td></tr>
+      <tr><td>DeBERTa-v3-base fine-tuned</td><td>~48&ndash;55%</td></tr>
+    </tbody>
+  </table>
+
+  <div class="callout warn">
+    <strong>Important:</strong> ANLI is adversarial &mdash; examples were specifically crafted to fool models. Even 50&ndash;55% accuracy on Round 2 is a strong result for a base-sized model.
+  </div>
+</section>
+
+<hr class="separator">
+
+<!-- ========== STEP 7: DOCKER ========== -->
+<section>
+  <h2>Step 7: Docker Deployment</h2>
+
+  <h3>Docker Workflow Flowchart</h3>
+  <div class="vflow">
+    <div class="step-box start">Write Dockerfile</div>
+    <div class="arrow-down">&#9661;</div>
+    <div class="step-box blue">Write docker-compose.yml</div>
+    <div class="arrow-down">&#9661;</div>
+    <div class="step-box purple">docker build -t anli-classifier .</div>
+    <div class="arrow-down">&#9661;</div>
+    <div class="step-box cyan">docker run anli-classifier</div>
+    <div class="arrow-down">&#9661;</div>
+    <div class="step-box orange">Test inference with sample input</div>
+    <div class="arrow-down">&#9661;</div>
+    <div class="step-box end">Document in README</div>
+  </div>
+
+  <h3>Dockerfile</h3>
+  <pre><span class="kw">FROM</span> python:3.10-slim
+
+<span class="kw">WORKDIR</span> /app
+
+<span class="kw">COPY</span> requirements.txt .
+<span class="kw">RUN</span> pip install --no-cache-dir -r requirements.txt
+
+<span class="kw">COPY</span> src/ ./src/
+<span class="kw">COPY</span> configs/ ./configs/
+<span class="kw">COPY</span> notebooks/ ./notebooks/
+
+<span class="kw">CMD</span> [<span class="str">"python"</span>, <span class="str">"src/predict.py"</span>]</pre>
+
+  <h3>docker-compose.yml</h3>
+  <pre><span class="kw">version</span>: <span class="str">"3.8"</span>
+<span class="kw">services</span>:
+  <span class="fn">anli-classifier</span>:
+    <span class="kw">build</span>: .
+    <span class="kw">volumes</span>:
+      - ./data:/app/data
+      - ./results:/app/results
+    <span class="kw">environment</span>:
+      - MODEL_PATH=/app/models/best_checkpoint</pre>
+</section>
+
+<hr class="separator">
+
+<!-- ========== STEP 8: README ========== -->
+<section>
+  <h2>Step 8: Documentation (README.md)</h2>
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-title"><span class="icon blue">1</span> Project Overview</div>
+      <ul><li>Task description &amp; dataset source</li></ul>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon purple">2</span> Setup Instructions</div>
+      <ul><li>Environment, dependencies, Python version</li></ul>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon green">3</span> How to Run</div>
+      <ul><li>Training, evaluation, inference commands</li></ul>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon orange">4</span> Docker Instructions</div>
+      <ul><li>Build, run, test commands</li></ul>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon pink">5</span> Results Summary</div>
+      <ul><li>Table of metrics, comparison chart</li></ul>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon cyan">6</span> Project Structure</div>
+      <ul><li>Directory layout explanation</li></ul>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon blue">7</span> Methodology</div>
+      <ul><li>Brief approach description</li></ul>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon purple">8</span> Future Improvements</div>
+      <ul><li>What you&rsquo;d do with more time</li></ul>
+    </div>
+  </div>
+</section>
+
+<hr class="separator">
+
+<!-- ========== STEP 9: PRESENTATION ========== -->
+<section>
+  <h2>Step 9: Presentation (5&ndash;8 Slides)</h2>
+  <div class="slides-grid">
+    <div class="slide-card">
+      <span class="slide-num">Slide 1</span>
+      <div class="slide-title">Problem Statement</div>
+      <div class="slide-desc">ANLI R2 task overview. Why it&rsquo;s challenging &mdash; adversarial data collection process.</div>
+    </div>
+    <div class="slide-card">
+      <span class="slide-num">Slide 2</span>
+      <div class="slide-title">EDA Highlights</div>
+      <div class="slide-desc">Key findings: class distribution, text length patterns, word overlap insights.</div>
+    </div>
+    <div class="slide-card">
+      <span class="slide-num">Slide 3</span>
+      <div class="slide-title">Methodology</div>
+      <div class="slide-desc">Baseline (TF-IDF) &#8594; Transformer fine-tuning progression. Justify model choices.</div>
+    </div>
+    <div class="slide-card">
+      <span class="slide-num">Slide 4</span>
+      <div class="slide-title">Results</div>
+      <div class="slide-desc">Comparison table, confusion matrix, key metrics (accuracy, F1).</div>
+    </div>
+    <div class="slide-card">
+      <span class="slide-num">Slide 5</span>
+      <div class="slide-title">Error Analysis</div>
+      <div class="slide-desc">Interesting failure cases. Insights on adversarial patterns the model struggles with.</div>
+    </div>
+    <div class="slide-card">
+      <span class="slide-num">Slide 6</span>
+      <div class="slide-title">Deployment</div>
+      <div class="slide-desc">Docker setup, inference workflow, how to reproduce results.</div>
+    </div>
+    <div class="slide-card">
+      <span class="slide-num">Slide 7</span>
+      <div class="slide-title">Future Work</div>
+      <div class="slide-desc">Ensemble methods, data augmentation, larger models, cross-round training.</div>
+    </div>
+  </div>
+</section>
+
+<hr class="separator">
+
+<!-- ========== TIPS ========== -->
+<section>
+  <h2>Key Tips for Standing Out</h2>
+  <div class="card-grid">
+    <div class="card">
+      <div class="card-title"><span class="icon purple">&#9733;</span> Show Your Reasoning</div>
+      <ul><li>Explain <em>why</em> you chose each model, not just <em>what</em> you did</li></ul>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon orange">&#9888;</span> Acknowledge Adversarial Nature</div>
+      <ul><li>ANLI examples were crafted to fool models &mdash; 50&ndash;60% on R2 is respectable</li></ul>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon green">&#10003;</span> Clean Code</div>
+      <ul><li>Modular functions, type hints, docstrings</li></ul>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon blue">&#8634;</span> Reproducibility</div>
+      <ul><li>Set random seeds everywhere, document full environment</li></ul>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon cyan">&#9998;</span> Notebook Quality</div>
+      <ul><li>Markdown headers, clear sections, inline plots</li></ul>
+    </div>
+    <div class="card">
+      <div class="card-title"><span class="icon pink">&#128270;</span> Error Analysis</div>
+      <ul><li>Go deep on <em>why</em> the model fails &mdash; this separates strong candidates</li></ul>
+    </div>
+  </div>
+</section>
+
+<hr class="separator">
+
+<!-- ========== REQUIREMENTS ========== -->
+<section>
+  <h2>Suggested requirements.txt</h2>
+  <pre>torch&gt;=2.0.0
+transformers&gt;=4.35.0
+datasets&gt;=2.14.0
+scikit-learn&gt;=1.3.0
+pandas&gt;=2.0.0
+numpy&gt;=1.24.0
+matplotlib&gt;=3.7.0
+seaborn&gt;=0.12.0
+xgboost&gt;=2.0.0
+jupyter&gt;=1.0.0
+tqdm&gt;=4.65.0
+pyyaml&gt;=6.0</pre>
+</section>
+
+<hr class="separator">
+
+<!-- ========== CHECKLIST ========== -->
+<section>
+  <h2>Daily Checklist</h2>
+  <ul class="checklist">
+    <li><div class="check"></div><span class="day-label">Day 1</span> Set up repo, load data, complete EDA</li>
+    <li><div class="check"></div><span class="day-label">Day 2</span> Preprocessing pipeline, baseline models (TF-IDF + LogReg/XGBoost)</li>
+    <li><div class="check"></div><span class="day-label">Day 3</span> Fine-tune DeBERTa/RoBERTa, training loop</li>
+    <li><div class="check"></div><span class="day-label">Day 4</span> Hyperparameter tuning, full evaluation, error analysis</li>
+    <li><div class="check"></div><span class="day-label">Day 5</span> Dockerfile, docker-compose, README, clean up code</li>
+    <li><div class="check"></div><span class="day-label">Day 6</span> Build presentation, practice it, start LeetCode/Pandas prep</li>
+    <li><div class="check"></div><span class="day-label">Day 7</span> ML from-scratch practice, final dry run, submit repo</li>
+  </ul>
+</section>
+
+</div>
+</body>
+</html>
